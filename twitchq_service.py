@@ -84,8 +84,8 @@ def generate_message(channel):
         print("Total views:", channel.get_views())
         print("Followers:", channel.get_followers())
 
-        message = "Stream is live! <%s|Stream link>\nStart time: %s\nGame: %s\nTitle: %s" \
-            % (channel.get_stream_url(), start_time_formatted, channel.get_game(), channel.get_status())
+        message = "Stream is live! <%s|Stream link>\nStream ID: %d\nStart time: %s\nGame: %s\nTitle: %s" \
+            % (channel.get_stream_url(), channel.get_stream_id(), start_time_formatted, channel.get_game(), channel.get_status())
 
         if CONFIG["webhook"]:
             send_message(CONFIG["webhook"], CONFIG["username"], CONFIG["slack-channel"], message)

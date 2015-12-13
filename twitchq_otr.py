@@ -86,8 +86,8 @@ def generate_message(channel, stream, f):
         print("Total views:", channel.get_views())
         print("Followers:", channel.get_followers())
 
-        message = "Stream is live! <%s|Stream link>\nStart time: %s\nGame: %s\nTitle: %s" \
-            % (channel.get_stream_url(), start_time_formatted, channel.get_game(), \
+        message = "Stream is live! <%s|Stream link>\nStream ID: %d\nStart time: %s\nGame: %s\nTitle: %s" \
+            % (channel.get_stream_url(), stream["sid"], start_time_formatted, channel.get_game(), \
             channel.get_status())
 
         save_json(f, stream)
