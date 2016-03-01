@@ -51,7 +51,7 @@ def iso8601_to_epoch(iso8601):
     """ Converts ISO 8601 datetime format to epoch """
     return parser.parse(iso8601).strftime('%s')
 
-def online_seconds(start: float):
+def online_seconds(start):
     """ Calculate  """
     now = time.mktime(time.gmtime())
     return int(now-start)

@@ -15,6 +15,7 @@ from twitchchannelquery import twitchchannelquery
 CONFIG_FILE = "config.json"
 STREAM_FILE = "stream.json"
 SAVE_CONFIG = True
+TRIES = 3
 
 def save_json(f, cfg):
     """ Save JSON-formatted file """
@@ -55,7 +56,7 @@ def iso8601_to_epoch(iso8601):
     """ Converts ISO 8601 datetime format to epoch """
     return parser.parse(iso8601).strftime('%s')
 
-def online_seconds(start: float):
+def online_seconds(start):
     """ Calculate  """
     now = time.mktime(time.gmtime())
     return int(now-start)
@@ -136,6 +137,11 @@ if not stream:
 
 channel = twitchchannelquery()
 channel.setup(CONFIG["channel"])
-channel.query()
+num_tries = 0
+while num_tries < TRIES:
+    channel.query()
+    if (channel.is_online):
+        num_tries = 3
+    num_tries += 1
 generate_message(channel, stream, STREAM_FILE)
 
