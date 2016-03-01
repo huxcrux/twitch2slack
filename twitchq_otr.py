@@ -140,7 +140,9 @@ channel.setup(CONFIG["channel"])
 num_tries = 0
 while num_tries < TRIES:
     channel.query()
-    if (channel.is_online):
+    if channel.is_online:
+        num_tries = 3
+    if not channel.is_online and not stream["online"]:
         num_tries = 3
     num_tries += 1
 generate_message(channel, stream, STREAM_FILE)
