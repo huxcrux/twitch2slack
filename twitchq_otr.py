@@ -142,8 +142,11 @@ while num_tries < TRIES:
     channel.query()
     if channel.is_online:
         num_tries = 3
-    if not channel.is_online and not stream["online"]:
+    elif not channel.is_online and not stream["online"]:
         num_tries = 3
-    num_tries += 1
+    else:
+        num_tries += 1
+        channel.reset()
+        time.sleep(2)
 generate_message(channel, stream, STREAM_FILE)
 
